@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\FileUploadController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,6 +18,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/file-upload', function () {
+    return Inertia::render('FileUpload');
+})->middleware(['auth', 'verified'])->name('fileupload');
+Route::post('/file-upload', [FileUploadController::class, 'store'])->name('file.upload');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
