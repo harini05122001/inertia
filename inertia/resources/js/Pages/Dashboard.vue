@@ -2,10 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, usePage} from '@inertiajs/vue3';
 
-const form = useForm({
-  name: '',  
-  email: ''
-});
+const form = useForm({});
 function submit() {
     form.post('/test');
 }
