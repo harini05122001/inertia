@@ -1,6 +1,17 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm, usePage} from '@inertiajs/vue3';
+
+const form = useForm({
+  name: '',  
+  email: ''
+});
+function submit() {
+    form.post('/test');
+}
+
+const { app_version } = usePage().props;
+
 </script>
 
 <template>
@@ -17,12 +28,11 @@ import { Head } from '@inertiajs/vue3';
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                    <div class="p-6 text-gray-900">
-                        You're logged in!
-                    </div>
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                    <p>App version: {{ app_version }}</p>
+                    <!-- <form @submit.prevent="submit">
+                        <button>Submit</button>
+                    </form> -->
                 </div>
             </div>
         </div>
