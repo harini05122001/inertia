@@ -5,6 +5,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\PartialReloadController;
+use Illuminate\Support\Facades\Session;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,10 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/partial-reload', [PartialReloadController::class, 'index'])->name('partial-reload');
+    Route::post('/partial-reload/reload', [PartialReloadController::class, 'increment']);
+    Route::post('/partial-reload/users', [PartialReloadController::class, 'reload']);
 });
 
-Route::post('test', function(){
-    return redirect()->back()->with('toast', 'Toast Endpoint!');
+
+Route::post('/test', function () {
+    Session::flash('toast', 'Form submitted successfully!');
+    return redirect()->route('dashboard');
 });
 
 require __DIR__.'/auth.php';
