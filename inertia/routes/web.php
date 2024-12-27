@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeferredPropsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/partial-reload', [PartialReloadController::class, 'index'])->name('partial-reload');
     Route::post('/partial-reload/reload', [PartialReloadController::class, 'increment']);
     Route::post('/partial-reload/users', [PartialReloadController::class, 'reload']);
+    Route::get('/deferred-props', [DeferredPropsController::class, 'index'])->name('deferred-props');
 });
 
 

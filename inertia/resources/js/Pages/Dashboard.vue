@@ -35,7 +35,7 @@ const { app_version } = usePage().props;
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
                     <!-- <p>App version: {{ app_version }}</p> -->
 
-                    <form @submit.prevent="submit">
+                    <!-- <form @submit.prevent="submit">
                         <button
                             type="submit"
                             class="px-4 py-2 bg-blue-500 text-white rounded"
@@ -46,7 +46,7 @@ const { app_version } = usePage().props;
 
                     <p v-if="message" class="mt-4 text-green-600">
                         {{ message }}
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>
