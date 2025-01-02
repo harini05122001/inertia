@@ -8,7 +8,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PartialReloadController;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\Company;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -40,7 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/partial-reload/users', [PartialReloadController::class, 'reload']);
     Route::get('/deferred-props', [DeferredPropsController::class, 'index'])->name('deferred-props');
 });
-
+Route::get('/company-count', function () {
+    return response()->json([
+        'companyCount' => Company::count(),
+    ]);
+});
 
 Route::post('/test', function () {
     Session::flash('toast', 'Form submitted successfully!');
